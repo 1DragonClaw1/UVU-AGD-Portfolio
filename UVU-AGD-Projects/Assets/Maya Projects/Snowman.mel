@@ -1,0 +1,35 @@
+//Base sphere
+polySphere -r 3 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+move -r 0 3 0;
+
+//Second sphere
+polySphere -r 2 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+move -r 0 7 0;
+
+//Head
+polySphere -r 1.5 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+move -r 0 10 0;
+
+//Nose
+polyCone -r 1 -h 2 -sx 20 -sy 1 -sz 0 -ax 0 1 0 -rcp 0 -cuv 3 -ch 1;
+setAttr "pCone1.rotateX" 90;
+scale -r 0.39756 0.39756 0.39756 ;
+move -r 0 10 1.7 ;
+scale -r 1 1.7128 1 ;
+scale -r 1 1.010099 1 ;
+
+//Eye 1
+polySphere -r 0.2 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+move -r 1 10.2 1;
+
+//Eye 2
+polySphere -r 0.2 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+move -r -1 10.2 1;
+
+//Button 1
+polySphere -r 0.2 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+move -r 0 7.4 1.9;
+
+//Button 2
+polySphere -r 0.2 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+move -r 0 6.5 1.9;
