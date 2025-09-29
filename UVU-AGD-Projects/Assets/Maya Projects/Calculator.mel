@@ -1,0 +1,135 @@
+//Calculator functions
+global proc float math_sum(float $input[])
+{
+    if (size($input) == 0) 
+    { 
+        warning("math_sum: empty array"); return 0; 
+    }
+    float $result = 0.0;
+    for ($i = 0; $i < size($input); $i++) 
+    { 
+        $result += $input[$i]; 
+    }
+    return $result;
+}
+
+global proc float math_diff(float $input[])
+{
+    int $n = size($input);
+    if ($n == 0) 
+    { 
+        warning("math_diff: empty array"); return 0; 
+    }
+    float $result = $input[0];
+    for ($i = 1; $i < $n; $i++) 
+    { 
+        $result -= $input[$i]; 
+    }
+    return $result;
+}
+
+global proc float math_mult(float $input[])
+{
+    if (size($input) == 0) 
+    { 
+        warning("math_mult: empty array"); return 0; 
+    }
+    float $result = 1.0;
+    for ($i = 0; $i < size($input); $i++) 
+    { 
+        $result *= $input[$i]; 
+    }
+    return $result;
+}
+
+global proc float math_divide(float $input[])
+{
+    int $n = size($input);
+    if ($n == 0) 
+    { 
+        warning("math_divide: empty array"); return 0; 
+    }
+    float $result = $input[0];
+    for ($i = 1; $i < $n; $i++)
+    {
+        if ($input[$i] == 0)
+        {
+            warning("math_divide: division by zero encountered — skipping value.");
+            continue;
+        }
+        $result /= $input[$i];
+    }
+    return $result;
+}
+
+global proc float math_power(float $input[])
+{
+    if (size($input) < 2) 
+    { 
+        warning("math_power needs base and exponent"); return 0; 
+    }
+    return `pow $input[0] $input[1]`;
+}
+
+global proc float math_mean(float $input[])
+{
+    int $n = size($input);
+    if ($n == 0) 
+    { 
+        warning("math_mean: empty array"); return 0; 
+    }
+    return ( math_sum($input) / (float)$n );
+}
+
+global proc float math_median(float $input[])
+{
+    int $n = size($input);
+    if ($n == 0) 
+    { 
+        warning("math_median: empty array"); return 0; 
+    }
+    float $sorted[] = $input;
+    sort $sorted;
+    if ($n % 2 == 1)
+    {
+        return $sorted[(int)floor($n/2)];
+    }
+    else
+    {
+        return ( ($sorted[$n/2 - 1] + $sorted[$n/2]) / 2.0 );
+    }
+}
+
+// --- runMethod: returns a float ---
+global proc float runMethod(string $funct, float $arry[])
+{
+    float $res = 0;
+    if ($funct == "sum")        
+        $res = math_sum($arry);
+    else if ($funct == "diff")  
+        $res = math_diff($arry);
+    else if ($funct == "mult")  
+        $res = math_mult($arry);
+    else if ($funct == "divide")
+        $res = math_divide($arry);
+    else if ($funct == "power") 
+        $res = math_power($arry);
+    else if ($funct == "mean")  
+        $res = math_mean($arry);
+    else if ($funct == "median")
+        $res = math_median($arry);
+    else 
+    { 
+        warning("runMethod: unknown function '" + $funct + "'"); 
+    }
+    return $res;
+}
+
+global proc runMethodPrint(string $funct, float $arry[])
+{
+    float $val = `runMethod $funct $arry`;
+    print($funct + ": " + $val + "\n");
+}
+
+float $nums[] = {10, 5, 2};
+runMethodPrint "median" $nums;
