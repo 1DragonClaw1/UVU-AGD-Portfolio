@@ -128,8 +128,46 @@ global proc float runMethod(string $funct, float $arry[])
 global proc runMethodPrint(string $funct, float $arry[])
 {
     float $val = `runMethod $funct $arry`;
-    print($funct + ": " + $val + "\n");
+
+    // Builds the input numbers as a string
+    string $numStr = "";
+    for ($i = 0; $i < size($arry); $i++)
+    {
+        $numStr += $arry[$i];
+        if ($i < size($arry) - 2)
+        {
+            $numStr += ", ";
+        }
+        else if ($i == size($arry) - 2)
+        {
+            $numStr += ", and ";
+        }
+    }
+
+    string $label = "";
+    if ($funct == "sum")      
+        $label = "sum";
+    else if ($funct == "diff")
+        $label = "difference";
+    else if ($funct == "mult")
+        $label = "product";
+    else                      
+        $label = $funct;
+
+    print("The " + $label + " of " + $numStr + " is " + $val + "\n");
 }
 
-float $nums[] = {10, 5, 2};
-runMethodPrint "median" $nums;
+global proc calc(string $funct, string $args[])
+{
+    // Convert string args to float array
+    float $nums[];
+    for ($i = 0; $i < size($args); $i++)
+    {
+        $nums[$i] = (float)$args[$i];
+    }
+
+    runMethodPrint $funct $nums;
+}
+
+calc "sum" {"10", "5", "2"};
+//Just make the formatting look a little nicer and read easier
