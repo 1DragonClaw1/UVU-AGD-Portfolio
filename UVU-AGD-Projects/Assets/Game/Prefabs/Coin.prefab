@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8675417638722560643}
   - component: {fileID: 4634176880881319302}
   - component: {fileID: 3010149237004725769}
+  - component: {fileID: 6108363170921240492}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -163,3 +164,27 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6108363170921240492}
+        m_TargetAssemblyTypeName: Coin, Assembly-CSharp
+        m_MethodName: OnTriggerEnter
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 4634176880881319302}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Collider, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6108363170921240492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6791450526591402409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92280def7d12daf4eb7e48054d651d3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
