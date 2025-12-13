@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Coin : MonoBehaviour
@@ -7,6 +8,7 @@ public class Coin : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 }
